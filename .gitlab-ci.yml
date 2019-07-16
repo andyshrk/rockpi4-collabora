@@ -15,7 +15,7 @@ build:
   stage: build
   image: debian:testing
   script:
-    - apt-get $APT_OPTIONS install debos
+    - apt-get update && apt-get $APT_OPTIONS install debos
     - debos --scratchsize=4G rockpi4.yml
   artifacts:
     name: debs
