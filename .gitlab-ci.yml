@@ -15,9 +15,10 @@ build:
   stage: build
   image: debian:testing
   script:
-    - apt-get update && apt-get $APT_OPTIONS install debos
+    - apt-get update && apt-get $APT_OPTIONS install debos pigz
     - debos --scratchsize=4G rockpi4.yml
+    - pigz debian-rockpi4.img
   artifacts:
     name: debs
     paths:
-      - $CI_PROJECT_DIR/*.img
+      - $CI_PROJECT_DIR/*.img.gz

@@ -1,5 +1,6 @@
 {{- $ubootPath := or .ubootPath "/usr/lib/u-boot/rockpi4-rk3399" -}}
 {{- $linuxVersion := or .linuxVersion "5.2.0-rc5_5.2.0-rc5-1" -}}
+{{- $image := or .image "debian-rockpi4.img" -}}
 
 architecture: arm64
 
@@ -15,7 +16,7 @@ actions:
     packages: [ libc6, sudo, adduser, systemd-sysv, initramfs-tools, u-boot-tools, u-boot-menu, util-linux ]
 
   - action: image-partition
-    imagename: debian-sid-arm64.img
+    imagename: {{$image}}
     imagesize: 4GB
     partitiontype: gpt
     mountpoints:
