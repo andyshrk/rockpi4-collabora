@@ -1,0 +1,23 @@
+variables:
+  APT_OPTIONS: -y --allow-unauthenticated
+
+stages:
+  - build
+
+# Retry jobs after runner system failures
+.retry: &retry
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+
+build:
+  stage: build
+  image: debian:testing
+  script:
+    - apt-get $APT_OPTIONS install debos
+    - debos --scratchsize=4G rockpi4.yml
+  artifacts:
+    name: debs
+    paths:
+      - $CI_PROJECT_DIR/*.img
