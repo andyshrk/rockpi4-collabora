@@ -91,10 +91,3 @@ actions:
     origin: filesystem
     source: {{$ubootPath}}/trust.img
     offset: '{{ sector 24576 }}'
-
-  # Update U-Boot menu after creation of image partitions and filesystem
-  # deployment to get correct root information from /etc/fstab
-  - action: run
-    description: Update U-Boot menu
-    chroot: true
-    command: u-boot-update
