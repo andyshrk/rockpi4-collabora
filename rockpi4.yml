@@ -77,6 +77,15 @@ actions:
     chroot: true
     command: dpkg -i /kernel.deb && rm /kernel.deb
 
+  - action: run
+    chroot: true
+    script: scripts/setup-user.sh
+
+  - action: run
+    description: Set hostname
+    chroot: true
+    command: echo debian > /etc/hostname
+
   - action: raw
     origin: filesystem
     source: {{$ubootPath}}/idbloader.img
