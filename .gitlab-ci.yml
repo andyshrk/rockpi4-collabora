@@ -19,6 +19,6 @@ build:
     - debos --scratchsize=4G rockpi4.yml
     - pigz debian-rockpi4.img
   artifacts:
-    name: debs
+    name: image
     paths:
       - $CI_PROJECT_DIR/*.img.gz
