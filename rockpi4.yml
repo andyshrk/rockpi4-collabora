@@ -13,7 +13,7 @@ actions:
     variant: minbase
 
   - action: apt
-    packages: [ libc6, sudo, adduser, systemd-sysv, initramfs-tools, u-boot-tools, u-boot-menu, util-linux ]
+    packages: [ libc6, sudo, adduser, systemd-sysv, initramfs-tools, u-boot-tools, u-boot-menu, util-linux, unzip, weston ]
 
   - action: image-partition
     imagename: {{$image}}
@@ -49,6 +49,11 @@ actions:
     url: https://gitlab.collabora.com/rockpi/linux/-/jobs/artifacts/panfrost/ci/raw/artifacts/linux-image-{{$linuxVersion}}_arm64.deb?job=build
     name: kernel.deb
 
+  - action: download
+    url: https://gitlab.collabora.com/rockpi/mesa/-/jobs/artifacts/panfrost/ci/download?job=build
+    name: mesa.zip
+    filename: mesa.zip
+
   - action: overlay
     source: overlays/
     destination: /
@@ -73,9 +78,17 @@ actions:
     origin: kernel.deb
     destination: /kernel.deb
 
+  - action: overlay
+    origin: mesa.zip
+    destination: /mesa.zip
+
   - action: run
     chroot: true
     command: dpkg -i /kernel.deb && rm /kernel.deb
+
+  - action: run
+    chroot: true
+    command: unzip /mesa.zip -d / && rm /mesa.zip && cp -aR /artifacts/* / && rm -rf /artifacts
 
   - action: run
     chroot: true
