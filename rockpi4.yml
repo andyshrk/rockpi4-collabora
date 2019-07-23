@@ -1,5 +1,5 @@
 {{- $ubootPath := or .ubootPath "/usr/lib/u-boot/rockpi4-rk3399" -}}
-{{- $linuxVersion := or .linuxVersion "5.2.0-rc5_5.2.0-rc5-1" -}}
+{{- $linuxVersion := or .linuxVersion "5.2.0-rc5-g02f8a104ebf0_5.2.0-rc5-g02f8a104ebf0-1" -}}
 {{- $image := or .image "debian-rockpi4.img" -}}
 
 architecture: arm64
