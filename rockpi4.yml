@@ -13,7 +13,10 @@ actions:
     variant: minbase
 
   - action: apt
-    packages: [ libc6, sudo, adduser, systemd-sysv, initramfs-tools, u-boot-tools, u-boot-menu, util-linux, unzip, weston, policykit-1, kbd, locales, network-manager ]
+    packages: [ libc6, sudo, adduser, systemd-sysv, initramfs-tools,
+                u-boot-tools, u-boot-menu, util-linux, unzip, weston,
+                policykit-1, kbd, locales, network-manager,
+                libsensors5, libllvm7 ]
 
   - action: image-partition
     imagename: {{$image}}
