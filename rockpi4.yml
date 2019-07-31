@@ -98,6 +98,10 @@ actions:
     script: scripts/setup-user.sh
 
   - action: run
+    chroot: true
+    command: systemctl enable weston
+
+  - action: run
     description: Set hostname
     chroot: true
     command: echo debian > /etc/hostname
