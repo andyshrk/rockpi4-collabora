@@ -91,7 +91,7 @@ actions:
 
   - action: run
     chroot: true
-    command: unzip /mesa.zip -d / && rm /mesa.zip && cp -aR /artifacts/* / && rm -rf /artifacts
+    command: unzip /mesa.zip -d / && rm /mesa.zip && cp -aR /artifacts/* / && ldconfig && rm -rf /artifacts
 
   - action: run
     chroot: true
